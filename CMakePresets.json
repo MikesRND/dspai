@@ -21,8 +21,7 @@
       "inherits": "base",
       "binaryDir": "${sourceDir}/build/debug",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_CXX_FLAGS": "-g -O0 -Wall -Wextra -Wpedantic -fsanitize=address,undefined"
+        "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
@@ -32,8 +31,7 @@
       "inherits": "base",
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_CXX_FLAGS": "-O3 -DNDEBUG -Wall -Wextra -Wpedantic"
+        "CMAKE_BUILD_TYPE": "Release"
       }
     }
   ],
@@ -41,14 +39,12 @@
     {
       "name": "debug",
       "displayName": "Debug Build",
-      "configurePreset": "debug",
-      "configuration": "Debug"
+      "configurePreset": "debug"
     },
     {
       "name": "release",
       "displayName": "Release Build",
-      "configurePreset": "release",
-      "configuration": "Release"
+      "configurePreset": "release"
     }
   ],
   "testPresets": [
@@ -56,7 +52,6 @@
       "name": "debug",
       "displayName": "Debug Tests",
       "configurePreset": "debug",
-      "configuration": "Debug",
       "output": {
         "outputOnFailure": true
       }
@@ -65,7 +60,6 @@
       "name": "release",
       "displayName": "Release Tests",
       "configurePreset": "release",
-      "configuration": "Release",
       "output": {
         "outputOnFailure": true
       }
