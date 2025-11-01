@@ -1,3 +1,10 @@
+# Build folders
+/build/
+/dist/
+
+# Build configuration
+.buildconfig.mk
+
 # Prerequisites
 *.d
 
