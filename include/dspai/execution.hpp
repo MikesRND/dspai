@@ -56,7 +56,7 @@ public:
      * - Transitions to either Running or Done state
      * - Should not throw exceptions for performance reasons
      * - Increments the iteration count on each successful call to execute()
-     * - If called in Done state, it is a no-op and returns false.
+     * - If called in Done state, it is a no-op and returns true.
      *
      * @return done: true if processing is complete or cannot continue
      */
