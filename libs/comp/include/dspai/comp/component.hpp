@@ -1,8 +1,8 @@
 #pragma once
 
-#include "execution.hpp"
+#include <dspai/comp/execution.hpp>
 
-namespace dspai {
+namespace dspai::comp {
 
 /**
  * Base component class 
@@ -152,4 +152,4 @@ private:
     std::uint64_t count_ = 0;
 };
 
-} // namespace dspai
+} // namespace dspai::comp

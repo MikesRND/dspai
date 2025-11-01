@@ -1,13 +1,12 @@
 # CMake build system with preset management
 # Uses .buildconfig.mk to track current preset
 
-.PHONY: build-help preset-debug preset-release configure build test clean clean-all current
+.PHONY: build-help preset-debug preset-release build test clean clean-all current
 
 build-help:
 	@echo "Build Commands:"
 	@echo "  preset-debug   - Set debug as default preset"
 	@echo "  preset-release - Set release as default preset"
-	@echo "  configure      - Configure with current preset"
 	@echo "  build          - Build current configuration"
 	@echo "  test           - Run tests for current configuration"
 	@echo "  clean          - Clean current configuration"
@@ -30,17 +29,12 @@ preset-release:
 	@echo "PRESET=release" > .buildconfig.mk
 	@echo "Default preset set to: release"
 
-# Configure using the current preset (only if not already configured)
-configure:
+# Build the current configuration (configure first if cache missing)
+build:
 	@if [ ! -f build/$(PRESET)/CMakeCache.txt ]; then \
 		./cdo cmake --preset $(PRESET); \
-	else \
-		echo "Already configured for $(PRESET). Use 'make clean' to reconfigure."; \
 	fi
-
-# Build the current configuration (configure first if needed)
-build: configure
-	./cdo cmake --build build/$(PRESET)
+	./cdo cmake --build --preset $(PRESET)
 
 # Run tests for current configuration (build first if needed)
 test: build

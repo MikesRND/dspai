@@ -1,9 +1,9 @@
-#include <dspai/component.hpp>
+#include <dspai/comp/component.hpp>
 #include <iostream>
 #include <cassert>
 #include <string>
 
-using namespace dspai;
+using namespace dspai::comp;
 
 // Test component implementation
 class TestComponent : public Component {

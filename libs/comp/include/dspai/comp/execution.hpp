@@ -1,9 +1,9 @@
 #pragma once
 
-#include <dspai/lifecycle.hpp>
+#include <dspai/comp/lifecycle.hpp>
 #include <cstdint>
 
-namespace dspai {
+namespace dspai::comp {
 
 /**
  * Execution states of a component
@@ -90,4 +90,4 @@ public:
 
 };
 
-} // namespace dspai
+} // namespace dspai::comp

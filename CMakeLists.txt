@@ -1,18 +1,36 @@
 cmake_minimum_required(VERSION 3.24)
 project(dspai VERSION 1.0.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+# Options
+option(DSPAI_ENABLE_WARNINGS "Enable compiler warnings" ON)
+option(DSPAI_ENABLE_SANITIZERS "Enable sanitizers in debug builds" ON)
 
-# Add include directory
-include_directories(include)
+# Standard install directory variables
+include(GNUInstallDirs)
 
-# Tests
-enable_testing()
+# Testing
+include(CTest)
 
-add_executable(component_test tests/component_test.cpp)
-add_test(NAME ComponentTest COMMAND component_test)
+# Add libraries
+add_subdirectory(libs/comp)
 
-# Installation
-install(DIRECTORY include/dspai DESTINATION include)
+# Export configuration for find_package support
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    include(CMakePackageConfigHelpers)
+    write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/dspaiConfigVersion.cmake"
+        VERSION ${PROJECT_VERSION}
+        COMPATIBILITY SameMajorVersion
+    )
+
+    install(EXPORT dspaiTargets
+        FILE dspaiConfig.cmake
+        NAMESPACE dspai::
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/dspai
+    )
+
+    install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/dspaiConfigVersion.cmake"
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/dspai
+    )
+endif()

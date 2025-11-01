@@ -2,7 +2,7 @@
 
 #include <system_error>
 
-namespace dspai {
+namespace dspai::comp {
 
 /**
  * Lifecycle states of a component
@@ -64,4 +64,4 @@ public:
     virtual void terminate() noexcept = 0;
 };
 
-} // namespace dspai
+} // namespace dspai::comp
